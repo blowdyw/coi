@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+CART_SESSION_ID = 'cart'
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shop'
+    'shop',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+
+# settings.py
+
+# Установите тип хранилища сессий
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'  # или другой вариант
+
+# Настройки для cookie
+SESSION_COOKIE_AGE = 1209600  # 2 недели
+SESSION_COOKIE_DOMAIN = '.mydomain.com'  # если необходимо
+SESSION_COOKIE_SECURE = True  # использовать HTTPS
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # оставлять сессии активными
+SESSION_SAVE_EVERY_REQUEST = True  # обновлять сессию при каждом запросе
+
