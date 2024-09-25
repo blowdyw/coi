@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-a0961koo2wn3u*9y@sr*oi)&0cf&_x2w339)hq6ptsmu78o0w1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 CART_SESSION_ID = 'cart'
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop',
     'cart',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'myshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -145,7 +147,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'  # или другой
 
 # Настройки для cookie
 SESSION_COOKIE_AGE = 1209600  # 2 недели
-SESSION_COOKIE_DOMAIN = '.mydomain.com'  # если необходимо
+# SESSION_COOKIE_DOMAIN = '.mydomain.com'  # если необходимо
 SESSION_COOKIE_SECURE = True  # использовать HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # оставлять сессии активными
 SESSION_SAVE_EVERY_REQUEST = True  # обновлять сессию при каждом запросе
